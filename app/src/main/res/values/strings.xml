@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">LabsCM2023202</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="genero">Género</string>
+    <string name="fecha_de_nacimiento">Fecha de nacimiento</string>
+    <string name="grado_de_escolaridad">Grado de Escolaridad</string>
+    <string name="hombre">Hombre</string>
+    <string name="mujer">Mujer</string>
+    <string name="selecione_una_fecha">Selecione una fecha</string>
+    <string name="primaria">Primaria</string>
+    <string name="secundaria">Secundaria</string>
+    <string name="universidad">Universidad</string>
+    <string name="otros">Otros</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="informacion_personal">Información Personal</string>
 </resources>
