@@ -101,7 +101,6 @@ fun UserInput() {
                 contentDescription = null,
                 modifier = Modifier.padding(top = 20.dp, start = 5.dp)
             )
-
             ComponentName()
         }
 
@@ -116,10 +115,8 @@ fun UserInput() {
                 contentDescription = null,
                 modifier = Modifier.padding(top = 20.dp, start = 5.dp)
             )
-
             ComponentLastName()
         }
-
 
         Spacer(
             modifier = Modifier
@@ -232,7 +229,7 @@ fun GenderSelection(selectedGender: String, onGenderSelected: (String) -> Unit) 
         Icon(
             imageVector = Icons.Rounded.Wc,
             contentDescription = null,
-            modifier = Modifier.padding(horizontal = 3.dp)
+            modifier = Modifier.padding(horizontal = 8.dp)
         )
 
         RadioButton(
