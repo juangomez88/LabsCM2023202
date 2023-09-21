@@ -1,5 +1,6 @@
-package co.edu.udea.compumovil.gr02_202302.labscm2023202
+package co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.screens
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,7 +14,9 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.LocationCity
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,12 +29,21 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.component.ComponentButton
+import androidx.navigation.NavHostController
+import co.edu.udea.compumovil.gr02_202302.labscm2023202.R
 import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.component.ComponentInput
 
-@Preview
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ContactDataActivity(){
+fun ContactDataActivity(navController: NavHostController) {
+    Scaffold {
+        BodyContentContactData()
+    }
+}
+
+@Composable
+fun BodyContentContactData() {
     var selectedGender by remember { mutableStateOf("") }
 
     Column {
@@ -60,9 +72,9 @@ fun ContactDataActivity(){
             var phone by remember { mutableStateOf("") }
             ComponentInput(
                 value = phone,
-                onValueChange = {phone = it},
+                onValueChange = { phone = it },
                 label = stringResource(R.string.telefono),
-                )
+            )
         }
 
         Spacer(
@@ -79,7 +91,7 @@ fun ContactDataActivity(){
             var address by remember { mutableStateOf("") }
             ComponentInput(
                 value = address,
-                onValueChange = {address = it},
+                onValueChange = { address = it },
                 label = stringResource(R.string.direccion),
             )
         }
@@ -98,7 +110,7 @@ fun ContactDataActivity(){
             var email by remember { mutableStateOf("") }
             ComponentInput(
                 value = email,
-                onValueChange = {email = it},
+                onValueChange = { email = it },
                 label = stringResource(R.string.Email),
             )
         }
@@ -118,7 +130,7 @@ fun ContactDataActivity(){
             var country by remember { mutableStateOf("") }
             ComponentInput(
                 value = country,
-                onValueChange = {country = it},
+                onValueChange = { country = it },
                 label = stringResource(R.string.Pais),
             )
         }
@@ -138,7 +150,7 @@ fun ContactDataActivity(){
             var city by remember { mutableStateOf("") }
             ComponentInput(
                 value = city,
-                onValueChange = {city = it},
+                onValueChange = { city = it },
                 label = stringResource(R.string.Ciudad),
             )
         }
@@ -146,6 +158,6 @@ fun ContactDataActivity(){
             modifier = Modifier
                 .height(16.dp)
         )
-        ComponentButton()
+
     }
 }
