@@ -2,6 +2,7 @@ package co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.screens
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
+import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,13 +13,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material.icons.filled.EditCalendar
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.School
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,6 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -39,12 +46,49 @@ import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.component.Compo
 import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.component.ComponentInput
 import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.component.ComponentSpinner
 
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ContactDataBar(
+    currentScreen: ScreenContact,
+    canNavigateBack: Boolean,
+    navigateUp: () -> Unit,
+    modifier: Modifier = Modifier
+    ) {
+
+    TopAppBar(
+        title = { Text(stringResource(currentScreen.title)) },
+        colors = TopAppBarDefaults.mediumTopAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer
+        ),
+        modifier = modifier,
+        navigationIcon = {
+            if (canNavigateBack) {
+                IconButton(onClick = navigateUp) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBackIosNew,
+                        contentDescription = stringResource(R.string.atras)
+                    )
+                }
+            }
+        }
+    )
+
+}
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
 fun UserInput(navController: NavHostController) {
-    Scaffold() {
+    Scaffold(
+        topBar = {
+            ContactDataBar(
+                currentScreen = ScreenContact.Start,
+                canNavigateBack = navController.previousBackStackEntry != null,
+                navigateUp = { navController.navigateUp() })
+        }
+    ) {
         BodyContent(navController)
     }
 
@@ -63,19 +107,9 @@ fun BodyContent(navController: NavHostController) {
     LazyColumn(
         modifier = columnModifier
     ) {
-        item {
-            Text(
-                text = stringResource(R.string.informacion_personal),
-                fontWeight = FontWeight.Black,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Color.Gray)
-                    .padding(10.dp)
-            )
-        }
 
         item {
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(45.dp))
         }
 
         item {
@@ -216,7 +250,10 @@ fun BodyContent(navController: NavHostController) {
     }
 }
 
-
+enum class ScreenContact(@StringRes val title: Int) {
+    Start(title = R.string.informacion_personal),
+    Contact(title = R.string.informacion_contacto)
+}
 
 
 

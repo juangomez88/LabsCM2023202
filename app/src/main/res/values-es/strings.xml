@@ -21,4 +21,6 @@
     <string name="Email">Email</string>
     <string name="Pais">Country</string>
     <string name="Ciudad">City</string>
+    <string name="atras">atrás</string>
+
 </resources>

@@ -31,13 +31,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import co.edu.udea.compumovil.gr02_202302.labscm2023202.R
+import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.component.ComponentButtonContact
 import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.component.ComponentInput
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ContactDataActivity(navController: NavHostController) {
-    Scaffold {
+    Scaffold (topBar = {
+        ContactDataBar(
+            currentScreen = ScreenContact.Contact,
+            canNavigateBack = navController.previousBackStackEntry != null,
+            navigateUp = { navController.navigateUp() })
+    }){
         BodyContentContactData()
     }
 }
@@ -48,18 +54,9 @@ fun BodyContentContactData() {
 
     Column {
 
-        Text(
-            text = stringResource(R.string.informacion_contacto),
-            fontWeight = FontWeight.Black,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.Gray)
-                .padding(20.dp)
-        )
-
         Spacer(
             modifier = Modifier
-                .height(16.dp)
+                .height(65.dp)
         )
 
         Row {
@@ -158,6 +155,7 @@ fun BodyContentContactData() {
             modifier = Modifier
                 .height(16.dp)
         )
+        ComponentButtonContact()
 
     }
 }
