@@ -3,7 +3,6 @@ package co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.screens
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.annotation.StringRes
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -31,11 +30,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -99,7 +95,6 @@ fun BodyContent(navController: NavHostController) {
     var selectedGender by remember { mutableStateOf("") }
 
     val screenOrientation = LocalConfiguration.current.orientation
-
     val columnModifier = Modifier
         .fillMaxSize()
         .padding(16.dp)
@@ -107,6 +102,7 @@ fun BodyContent(navController: NavHostController) {
     LazyColumn(
         modifier = columnModifier
     ) {
+        val userData = UserData()
 
         item {
             Spacer(modifier = Modifier.height(45.dp))
@@ -132,6 +128,8 @@ fun BodyContent(navController: NavHostController) {
                     label = stringResource(R.string.nombre),
                     //textStyle = TextStyle(fontSize = if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) 16.sp else 24.sp)
                 )
+                userData.name = name
+
             }
         }
 
@@ -159,6 +157,8 @@ fun BodyContent(navController: NavHostController) {
                     label = stringResource(R.string.apellido),
                     //textStyle = TextStyle(fontSize = if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) 16.sp else 24.sp)
                 )
+                userData.lastName = lastName
+
             }
         }
 
@@ -180,6 +180,7 @@ fun BodyContent(navController: NavHostController) {
                     selectedGender = selectedGender,
                     onGenderSelected = { gender -> selectedGender = gender }
                 )
+                userData.gender = selectedGender
             }
         }
 
@@ -208,7 +209,9 @@ fun BodyContent(navController: NavHostController) {
         }
 
         item {
-            ComponentDatePicker()
+            val birthDate = ComponentDatePicker()
+            userData.birthDate = String.format(birthDate.toString())
+
         }
 
         item {
@@ -237,7 +240,8 @@ fun BodyContent(navController: NavHostController) {
         }
 
         item {
-            ComponentSpinner()
+            val education=ComponentSpinner()
+            userData.educationLevel = String.format(education.toString())
         }
 
         item {

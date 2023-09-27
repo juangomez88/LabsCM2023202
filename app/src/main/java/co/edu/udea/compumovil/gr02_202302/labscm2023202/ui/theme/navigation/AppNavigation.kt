@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.screens.ContactDataActivity
+import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.screens.ShowDataActivity
 import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.screens.UserInput
 
 @Composable
@@ -16,6 +17,9 @@ fun AppNavigation() {
         }
         composable(route= AppScreens.ContactDataActivity.route){
             ContactDataActivity(navController)
+        }
+        composable(route= AppScreens.ShowDataActivity.route){
+            ShowDataActivity(navController)
         }
     }
 }

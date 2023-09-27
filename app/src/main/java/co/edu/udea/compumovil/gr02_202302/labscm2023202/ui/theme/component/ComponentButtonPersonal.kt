@@ -18,14 +18,10 @@ import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.navigation.AppS
 
 @Composable
 fun ComponentButtonData(navHostController: NavHostController) {
-
     Box(
         contentAlignment = Alignment.BottomEnd,
         modifier = Modifier.fillMaxWidth()
-
     ) {
-
-
         Button(
             onClick = { navHostController.navigate(route = AppScreens.ContactDataActivity.route) },
             modifier = Modifier
