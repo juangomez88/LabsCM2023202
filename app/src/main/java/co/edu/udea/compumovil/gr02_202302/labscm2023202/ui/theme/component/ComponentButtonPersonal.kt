@@ -17,7 +17,9 @@ import co.edu.udea.compumovil.gr02_202302.labscm2023202.R
 import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.navigation.AppScreens
 
 @Composable
-fun ComponentButtonData(navHostController: NavHostController) {
+fun ComponentButtonData(
+    navHostController: NavHostController
+) {
 
     Box(
         contentAlignment = Alignment.BottomEnd,
@@ -27,7 +29,10 @@ fun ComponentButtonData(navHostController: NavHostController) {
 
 
         Button(
-            onClick = { navHostController.navigate(route = AppScreens.ContactDataActivity.route) },
+            onClick = {
+                navHostController.navigate(route = AppScreens.ContactDataActivity.route)
+
+            },
             modifier = Modifier
                 .padding(16.dp),
             colors = ButtonDefaults.buttonColors(Color.Gray)

@@ -21,4 +21,8 @@
     <string name="Pais">Country</string>
     <string name="Ciudad">City</string>
     <string name="atras">Back</string>
+    <string name="text_field_hint">text field hint</string>
+    <string name="other">other</string>
+    <string name="selecione_su_cuidad">selecione su cuidad</string>
+    <string name="selecione_su_pais">selecione su país</string>
 </resources>

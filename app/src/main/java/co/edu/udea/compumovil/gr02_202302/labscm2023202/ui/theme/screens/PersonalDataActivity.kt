@@ -54,7 +54,7 @@ fun ContactDataBar(
     canNavigateBack: Boolean,
     navigateUp: () -> Unit,
     modifier: Modifier = Modifier
-    ) {
+) {
 
     TopAppBar(
         title = { Text(stringResource(currentScreen.title)) },
@@ -111,7 +111,7 @@ fun BodyContent(navController: NavHostController) {
         item {
             Spacer(modifier = Modifier.height(45.dp))
         }
-
+// Item: name
         item {
             Row(
                 modifier = Modifier
@@ -123,7 +123,7 @@ fun BodyContent(navController: NavHostController) {
                     contentDescription = null,
                     modifier = Modifier
                         .padding(top = 20.dp, start = 5.dp)
-                        .size(if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) 24.dp else 48.dp)
+                        .size(if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) 20.dp else 35.dp)
                 )
                 var name by remember { mutableStateOf("") }
                 ComponentInput(
@@ -139,6 +139,8 @@ fun BodyContent(navController: NavHostController) {
             Spacer(modifier = Modifier.height(16.dp))
         }
 
+//Item lastName
+
         item {
             Row(
                 modifier = Modifier
@@ -150,7 +152,7 @@ fun BodyContent(navController: NavHostController) {
                     contentDescription = null,
                     modifier = Modifier
                         .padding(top = 20.dp, start = 5.dp)
-                        .size(if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) 24.dp else 48.dp)
+                        .size(if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) 20.dp else 35.dp)
                 )
                 var lastName by remember { mutableStateOf("") }
                 ComponentInput(
@@ -165,6 +167,8 @@ fun BodyContent(navController: NavHostController) {
         item {
             Spacer(modifier = Modifier.height(16.dp))
         }
+
+//Item selectGender
 
         item {
             Row(
@@ -193,19 +197,15 @@ fun BodyContent(navController: NavHostController) {
                     .fillMaxWidth()
                     .padding(5.dp)
             ) {
-                Icon(
-                    imageVector = Icons.Default.EditCalendar,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .padding(horizontal = 3.dp)
-                        .size(if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) 24.dp else 48.dp)
-                )
+
                 Text(
                     text = stringResource(R.string.fecha_de_nacimiento),
                     fontSize = if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) 16.sp else 24.sp
                 )
             }
         }
+
+// Item ComponentDatePicker
 
         item {
             ComponentDatePicker()
@@ -215,6 +215,7 @@ fun BodyContent(navController: NavHostController) {
             Spacer(modifier = Modifier.height(16.dp))
         }
 
+        //Item ComponentSpinner
         item {
             Row(
                 modifier = Modifier
@@ -226,7 +227,7 @@ fun BodyContent(navController: NavHostController) {
                     contentDescription = null,
                     modifier = Modifier
                         .padding(horizontal = 3.dp)
-                        .size(if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) 24.dp else 48.dp)
+                        .size(if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) 20.dp else 35.dp)
                 )
 
                 Text(
@@ -254,7 +255,6 @@ enum class ScreenContact(@StringRes val title: Int) {
     Start(title = R.string.informacion_personal),
     Contact(title = R.string.informacion_contacto)
 }
-
 
 
 

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.EditCalendar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
@@ -45,26 +46,30 @@ fun ComponentDatePicker() {
         }, anio, mes, dia
     )
     Box(modifier = Modifier.fillMaxWidth()) {
+
+        Icon(
+            imageVector = Icons.Filled.EditCalendar,
+            contentDescription = null,
+            modifier = Modifier
+                .size(35.dp)
+                .padding(4.dp)
+                .clickable {
+                    mDatePickerDialog.show()
+                }
+        )
         Row(
             modifier = Modifier
-                .align(Alignment.Center)
+                .align(Alignment.BottomCenter)
+
         ) {
             OutlinedTextField(
                 value = fecha,
                 onValueChange = { fecha = it },
                 readOnly = true,
-                label = { Text(text = stringResource(R.string.selecione_una_fecha)) }
+                label = { Text(text = stringResource(R.string.selecione_una_fecha)) },
+                modifier = Modifier.padding(start = 30.dp)
             )
-            Icon(
-                imageVector = Icons.Filled.DateRange,
-                contentDescription = null,
-                modifier = Modifier
-                    .size(60.dp)
-                    .padding(4.dp)
-                    .clickable {
-                        mDatePickerDialog.show()
-                    }
-            )
+
         }
     }
 
