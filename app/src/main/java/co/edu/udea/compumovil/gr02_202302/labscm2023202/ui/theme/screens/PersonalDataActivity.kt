@@ -1,7 +1,10 @@
 package co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.screens
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.res.Configuration
+import android.util.Log
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -31,11 +34,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import co.edu.udea.compumovil.gr02_202302.labscm2023202.R
+import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.LabsCM2023202Theme
 import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.component.ComponentButtonData
 import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.component.ComponentDatePicker
 import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.component.ComponentGenderSelection
@@ -72,26 +78,33 @@ fun ContactDataBar(
 
 }
 
+var name by mutableStateOf(TextFieldValue(""))
+var surname by mutableStateOf(TextFieldValue(""))
+var selectedSexOption = mutableStateOf("")
+var birthDate = mutableStateOf("")
+var selectedSchoolGradeOption by mutableStateOf("")
+
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
-fun UserInput(navController: NavHostController) {
+fun UserInput(context: Context, navController: NavHostController) {
     Scaffold(
         topBar = {
             ContactDataBar(
-                currentScreen = ScreenContact.Start,
+                currentScreen   = ScreenContact.Start,
                 canNavigateBack = navController.previousBackStackEntry != null,
-                navigateUp = { navController.navigateUp() })
+                navigateUp      = { navController.navigateUp() })
         }
     ) {
-        BodyContent(navController)
+        BodyContent(context, navController)
     }
 
 }
 
 @Composable
-fun BodyContent(navController: NavHostController) {
+fun BodyContent(context: Context, navController: NavHostController) {
     var selectedGender by remember { mutableStateOf("") }
 
     val screenOrientation = LocalConfiguration.current.orientation
@@ -121,22 +134,17 @@ fun BodyContent(navController: NavHostController) {
                         .padding(top = 20.dp, start = 5.dp)
                         .size(if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) 24.dp else 48.dp)
                 )
-                var name by remember { mutableStateOf("") }
                 ComponentInput(
                     value = name,
                     onValueChange = { name = it },
                     label = stringResource(R.string.nombre),
                     //textStyle = TextStyle(fontSize = if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) 16.sp else 24.sp)
                 )
-                userData.name = name
-
             }
         }
-
         item {
             Spacer(modifier = Modifier.height(16.dp))
         }
-
         item {
             Row(
                 modifier = Modifier
@@ -150,14 +158,12 @@ fun BodyContent(navController: NavHostController) {
                         .padding(top = 20.dp, start = 5.dp)
                         .size(if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) 24.dp else 48.dp)
                 )
-                var lastName by remember { mutableStateOf("") }
                 ComponentInput(
-                    value = lastName,
-                    onValueChange = { lastName = it },
+                    value = surname,
+                    onValueChange = { surname = it },
                     label = stringResource(R.string.apellido),
                     //textStyle = TextStyle(fontSize = if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) 16.sp else 24.sp)
                 )
-                userData.lastName = lastName
 
             }
         }
@@ -209,9 +215,7 @@ fun BodyContent(navController: NavHostController) {
         }
 
         item {
-            val birthDate = ComponentDatePicker()
-            userData.birthDate = String.format(birthDate.toString())
-
+            ComponentDatePicker()
         }
 
         item {
@@ -241,7 +245,6 @@ fun BodyContent(navController: NavHostController) {
 
         item {
             val education=ComponentSpinner()
-            userData.educationLevel = String.format(education.toString())
         }
 
         item {
@@ -249,16 +252,82 @@ fun BodyContent(navController: NavHostController) {
         }
 
         item {
-            ComponentButtonData(navController)
+            ComponentButtonData(
+                context =  context,
+                onClickFunction = {personalDataFormNextButtonOnClick(context)},
+                navController
+            )
         }
     }
+}
+fun trimNameAndSurname() {
+    name = name.copy(text = name.text.trim())
+    surname = surname.copy(text = surname.text.trim())
 }
 
 enum class ScreenContact(@StringRes val title: Int) {
     Start(title = R.string.informacion_personal),
-    Contact(title = R.string.informacion_contacto)
+    Contact(title = R.string.informacion_contacto),
+}
+
+fun personalDataFormNextButtonOnClick(context: Context) {
+    if (isDataValid(context)) {
+        trimNameAndSurname()
+        logcatAllData()
+    }
+}
+
+fun logcatAllData() {
+    val logAllDataMessage = StringBuilder()
+    logAllDataMessage.append("Información personal: \n")
+    logAllDataMessage.append("Nombre completo: ${name.text} ${surname.text} \n")
+    logAllDataMessage.append("Fecha de nacimiento: ${birthDate.value} \n")
+    if (selectedSexOption.value.isNotEmpty()) {
+        logAllDataMessage.append("Sexo: ${selectedSexOption.value} \n")
+    }
+    if (selectedSchoolGradeOption.isNotEmpty()) {
+        logAllDataMessage.append("Grado escolaridad: $selectedSchoolGradeOption \n")
+    }
+    Log.i("PersonalDataActivity", logAllDataMessage.toString())
+}
+
+fun isDataValid(context: Context) : Boolean {
+    val toastMessage = StringBuilder()
+    if (!nameIsValid()) {
+        toastMessage.append(context.getString(R.string.invalid_name_toast_message))
+        toastMessage.append(". ")
+    }
+    if (!surnameIsValid()) {
+        toastMessage.append(context.getString(R.string.invalid_surname_toast_message))
+        toastMessage.append(". ")
+    }
+    if (toastMessage.isNotEmpty()) {
+        Toast.makeText(context, toastMessage.toString(), Toast.LENGTH_SHORT).show()
+        return false
+    }
+    return true
+}
+
+fun nameIsValid(): Boolean{
+    if (name.text.isNotEmpty()) {
+        return name.text.contains(Regex("[a-zA-Z]"))
+    }
+    return false
+}
+
+fun surnameIsValid(): Boolean {
+    if (surname.text.isNotEmpty()) {
+        return surname.text.contains(Regex("[a-zA-Z]"))
+    }
+    return false
 }
 
 
-
+@Composable
+fun GreetingPreview2(navController: NavHostController) {
+    val context = LocalContext.current
+    LabsCM2023202Theme {
+        BodyContent(context, navController)
+    }
+}
 
