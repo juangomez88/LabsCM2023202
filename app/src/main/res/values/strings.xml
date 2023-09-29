@@ -21,8 +21,13 @@
     <string name="Pais">Country</string>
     <string name="Ciudad">City</string>
     <string name="atras">Back</string>
-    <string name="text_field_hint">text field hint</string>
-    <string name="other">other</string>
-    <string name="selecione_su_cuidad">selecione su cuidad</string>
-    <string name="selecione_su_pais">selecione su país</string>
+    <string name="contact_data_form_finished_toast_message">Logcats ok</string>
+    <string name="invalid_name_toast_message">Name is mandatory and can not have numbers</string>
+    <string name="invalid_surname_toast_message">Surname is mandatory and can not have numbers</string>
+    <string name="invalid_birthdate_toast_message">Birthdate is mandatory and can not be a date on the future</string>
+    <string name="phone_invalid">Phone number is mandatory</string>
+    <string name="email_invalid">Email is mandatory and must be a valid email</string>
+    <string name="country_invalid">Country is mandatory and must be one of the list</string>
+    <string name="city_invalid">City must be one of the country list</string>
+
 </resources>

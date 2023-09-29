@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import co.edu.udea.compumovil.gr02_202302.labscm2023202.R
 
@@ -57,8 +58,8 @@ fun ComponentName() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ComponentInput(
-    value: String,
-    onValueChange: (String) -> Unit,
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
     label: String
 ) {
     Box(

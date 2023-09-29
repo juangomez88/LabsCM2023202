@@ -22,5 +22,13 @@
     <string name="Pais">Country</string>
     <string name="Ciudad">City</string>
     <string name="atras">atrás</string>
+    <string name="contact_data_form_finished_toast_message">Logcats listos</string>
+    <string name="invalid_name_toast_message">El nombre es obligatorio y no puede contener números</string>
+    <string name="invalid_surname_toast_message">El apellido es obligatorio y no puede contener números</string>
+    <string name="invalid_birthdate_toast_message">La fecha de nacimiento es obligatoria y no puede ser una fecha futura</string>
+    <string name="phone_invalid">El número de teléfono es obligatorio</string>
+    <string name="email_invalid">El correo electrónico es obligatorio y debe ser un correo electrónico válido</string>
+    <string name="country_invalid">El país es obligatorio</string>
+    <string name="city_invalid">La ciudad es obligatorio o es Invalida</string>
 
 </resources>
