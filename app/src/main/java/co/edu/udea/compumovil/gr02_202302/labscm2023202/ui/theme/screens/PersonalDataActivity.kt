@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
-import androidx.compose.material.icons.filled.EditCalendar
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.School
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -47,6 +46,7 @@ import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.component.Compo
 import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.component.ComponentGenderSelection
 import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.component.ComponentInput
 import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.component.ComponentSpinner
+import co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.component.keyboardName
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -138,6 +138,7 @@ fun BodyContent(context: Context, navController: NavHostController) {
                     value = name,
                     onValueChange = { name = it },
                     label = stringResource(R.string.nombre),
+                    keyboardOptions = keyboardName,
                     //textStyle = TextStyle(fontSize = if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) 16.sp else 24.sp)
                 )
             }
@@ -162,6 +163,7 @@ fun BodyContent(context: Context, navController: NavHostController) {
                     value = surname,
                     onValueChange = { surname = it },
                     label = stringResource(R.string.apellido),
+                    keyboardOptions = keyboardName,
                     //textStyle = TextStyle(fontSize = if (screenOrientation == Configuration.ORIENTATION_LANDSCAPE) 16.sp else 24.sp)
                 )
 

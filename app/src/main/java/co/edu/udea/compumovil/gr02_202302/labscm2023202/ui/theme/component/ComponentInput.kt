@@ -3,15 +3,9 @@ package co.edu.udea.compumovil.gr02_202302.labscm2023202.ui.theme.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.*
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -60,7 +54,8 @@ fun ComponentName() {
 fun ComponentInput(
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
-    label: String
+    label: String,
+    keyboardOptions: KeyboardOptions
 ) {
     Box(
         modifier = Modifier
@@ -74,7 +69,9 @@ fun ComponentInput(
             singleLine = true,
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.White)
+                .background(Color.White),
+            keyboardOptions = keyboardOptions,
+
         )
         Divider(
             thickness = 2.dp,
