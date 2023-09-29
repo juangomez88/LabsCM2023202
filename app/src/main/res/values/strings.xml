@@ -29,5 +29,8 @@
     <string name="email_invalid">Email is mandatory and must be a valid email</string>
     <string name="country_invalid">Country is mandatory and must be one of the list</string>
     <string name="city_invalid">City must be one of the country list</string>
+    <string name="selecione_su_cuidad">Select your city</string>
+    <string name="selecione_su_pais">Select your contry</string>
+
 
 </resources>

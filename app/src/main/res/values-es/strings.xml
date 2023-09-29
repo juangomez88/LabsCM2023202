@@ -30,5 +30,6 @@
     <string name="email_invalid">El correo electrónico es obligatorio y debe ser un correo electrónico válido</string>
     <string name="country_invalid">El país es obligatorio</string>
     <string name="city_invalid">La ciudad es obligatorio o es Invalida</string>
-
+    <string name="selecione_su_cuidad">Seleccione su ciudad</string>
+    <string name="selecione_su_pais">Seleccione su país</string>
 </resources>
